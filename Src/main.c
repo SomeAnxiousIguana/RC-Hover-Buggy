@@ -119,8 +119,8 @@ int16_t cmdR;                    // global variable for Right Command
 #if defined(FEEDBACK_SERIAL_USART2) || defined(FEEDBACK_SERIAL_USART3)
 typedef struct{
   uint16_t  start;
-  int16_t   cmd1;
   int16_t   cmd2;
+  int16_t   cmd1;
   int16_t   speedR_meas;
   int16_t   speedL_meas;
   int16_t   batVoltage;
@@ -353,9 +353,9 @@ int main(void) {
 
       // ####### SET OUTPUTS (if the target change is less than +/- 100) #######
       #ifdef INVERT_R_DIRECTION
-        pwmr = cmdR;
-      #else
         pwmr = -cmdR;
+      #else
+        pwmr = cmdR;
       #endif
       #ifdef INVERT_L_DIRECTION
         pwml = -cmdL;

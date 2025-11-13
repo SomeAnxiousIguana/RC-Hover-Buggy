@@ -884,8 +884,8 @@ void readInputRaw(void) {
 
     #if defined(SIDEBOARD_SERIAL_USART2)
     if (inIdx == SIDEBOARD_SERIAL_USART2) {
-      input1[inIdx].raw = Sideboard_L.cmd1;
-      input2[inIdx].raw = Sideboard_L.cmd2;
+      input1[inIdx].raw = Sideboard_L.cmd2;
+      input2[inIdx].raw = Sideboard_L.cmd1;
     }
     #endif
     #if defined(SIDEBOARD_SERIAL_USART3)
@@ -1302,7 +1302,7 @@ void usart_process_sideboard(SerialSideboard *Sideboard_in, SerialSideboard *Sid
 {
   uint16_t checksum;
   if (Sideboard_in->start == SERIAL_START_FRAME) {
-    checksum = (uint16_t)(Sideboard_in->start ^ Sideboard_in->pitch ^ Sideboard_in->dPitch ^ Sideboard_in->cmd1 ^ Sideboard_in->cmd2 ^ Sideboard_in->sensors);
+    checksum = (uint16_t)(Sideboard_in->start ^ Sideboard_in->pitch ^ Sideboard_in->dPitch ^ Sideboard_in->1 ^ Sideboard_in->cmd2 ^ Sideboard_in->sensors);
     if (Sideboard_in->checksum == checksum) {
       *Sideboard_out = *Sideboard_in;
       if (usart_idx == 2) {             // Sideboard USART2

@@ -189,7 +189,7 @@ void PWM_Init(void) {
   GPIO_InitStruct1.Pull         = GPIO_PULLDOWN;
   HAL_GPIO_Init(PWM_PORT_CH1, &GPIO_InitStruct1);
 
-  // Channel 2 (speed)
+  // Channel 2 (speed right)
   GPIO_InitTypeDef GPIO_InitStruct2 = {0};
   /*Configure GPIO pin : PA3 (Left) or PB11 (Right) */
   GPIO_InitStruct2.Pin          = PWM_PIN_CH2;
@@ -197,6 +197,15 @@ void PWM_Init(void) {
   GPIO_InitStruct2.Speed        = GPIO_SPEED_FREQ_HIGH;
   GPIO_InitStruct2.Pull         = GPIO_PULLDOWN;
   HAL_GPIO_Init(PWM_PORT_CH2, &GPIO_InitStruct2);
+
+  // Channel 3 (speed left)
+  GPIO_InitTypeDef GPIO_InitStruct3 = {0};
+  /*Configure GPIO pin : PA3 (Left) or PB11 (Right) */
+  GPIO_InitStruct3.Pin          = PWM_PIN_CH3;
+  GPIO_InitStruct3.Mode         = GPIO_MODE_IT_RISING_FALLING;
+  GPIO_InitStruct3.Speed        = GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct3.Pull         = GPIO_PULLDOWN;
+  HAL_GPIO_Init(PWM_PORT_CH3, &GPIO_InitStruct3);
 
   #ifdef CONTROL_PWM_LEFT
   /* EXTI interrupt init*/
